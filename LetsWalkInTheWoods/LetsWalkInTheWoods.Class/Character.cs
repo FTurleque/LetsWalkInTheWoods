@@ -19,21 +19,33 @@ namespace LetsWalkInTheWoods.Class
             this.CharacterY = _Y;
         }
 
+        /// <summary>
+        /// Déplacement du personnage vers le sud.
+        /// </summary>
         public void MoveDown()
         {
             CharacterY++;
         }
 
+        /// <summary>
+        /// Déplacement du personnage vers le nord.
+        /// </summary>
         public void MoveUp()
         {
             CharacterY--;
         }
 
+        /// <summary>
+        /// Déplacement du personnage vers l'ouest.
+        /// </summary>
         public void MoveLeft()
         {
             CharacterX--;
         }
 
+        /// <summary>
+        /// Déplacement du personnage vers l'est.
+        /// </summary>
         public void MoveRight()
         {
             CharacterX++;
