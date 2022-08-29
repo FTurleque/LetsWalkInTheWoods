@@ -22,14 +22,14 @@ namespace LetsWalkInTheWoodsGame.Class
             switch (_movement)
             {
                 case 'N':
-                    if (GetTreeOrNot(x, y - 1) && GetLimitOfMap(x, y - 1))
+                    if (!GetTreeOrNot(x, y - 1) && !GetLimitOfMap(x, y - 1))
                     {
                         hero.MoveUp();
                         Map.CharacterMapping(hero);
                     }
                     break;
                 case 'S':
-                    if (GetTreeOrNot(x, y + 1) && GetLimitOfMap(x, y + 1))
+                    if (!GetTreeOrNot(x, y + 1) && !GetLimitOfMap(x, y + 1))
                     {
                         hero.MoveDown();
                         Map.CharacterMapping(hero);

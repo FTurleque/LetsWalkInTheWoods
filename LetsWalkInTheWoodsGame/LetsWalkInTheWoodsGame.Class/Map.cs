@@ -60,6 +60,9 @@ namespace LetsWalkInTheWoodsGame.Class
         /// <param name="_character">Personnage</param>
         public static void CharacterMapping(Character _character)
         {
+            // TODO: Changer le tableau de mapping en tableau 2 dimension.
+            // Effacer la dernière position.
+            // Vérifier les limite de la carte ainsi que la présence des arbre.
             string row = Mapping[_character.Y];
             char[] col = row.ToCharArray();
             col[_character.X] = _character.CharacterBody;

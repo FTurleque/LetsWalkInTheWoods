@@ -4,9 +4,6 @@ using LetsWalkInTheWoodsGame.Class;
 
 Map map = new Map();
 Console.WriteLine("Taper sur ESC ou x pour sortir du jeu.\nVeuillez entrer les coordonées de départ du personnage (x,y) separé par un espace :");
-/*string coordonate = Console.ReadLine();
-int x = int.Parse(coordonate.Split(" ")[0]);
-int y = int.Parse(coordonate.Split(" ")[1]);*/
 Character hero = new Character(3, 0);
 CharacterMovement move = new CharacterMovement(hero);
 bool gameRun = true;
@@ -27,26 +24,18 @@ do
     if (keyinfo.Key == ConsoleKey.UpArrow)
     {
         move.CharacterMoving('N');
-        /*hero.MoveUp();
-        Console.WriteLine("Up");*/
     }
     if (keyinfo.Key == ConsoleKey.DownArrow)
     {
         move.CharacterMoving('S');
-        /*hero.MoveDown();
-        Console.WriteLine("Down");*/
     }
     if (keyinfo.Key == ConsoleKey.LeftArrow)
     {
         move.CharacterMoving('O');
-        /*hero.MoveLeft();
-        Console.WriteLine("Left");*/
     }
     if (keyinfo.Key == ConsoleKey.RightArrow)
     {
         move.CharacterMoving('E');
-        /*hero.MoveRight();
-        Console.WriteLine("Right");*/
     }
     if (keyinfo.Key == ConsoleKey.X)
     {
