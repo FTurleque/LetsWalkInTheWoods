@@ -11,8 +11,6 @@ namespace LetsWalkInTheWoods.Class
 
         public int CharacterY { get; set; }
 
-        public char CharacterBody { get; }
-
         public Character(int _X, int _Y)
         {
             this.CharacterX = _X;

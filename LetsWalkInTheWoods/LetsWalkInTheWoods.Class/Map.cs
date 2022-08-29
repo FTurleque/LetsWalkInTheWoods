@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LetsWalkInTheWoods.Class.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace LetsWalkInTheWoods.Class
 
         public Map()
         {
-            GetMap = File.ReadAllText(Path.Combine(path, "carte.txt"), Encoding.UTF8);
+            //GetMap = File.ReadAllText(Path.Combine(path, "carte.txt"), Encoding.UTF8);
+            GetMap = Resources.carte;
             Mapping = CreateMapping();
             Width = GetWidth();
             Heigth = GetHeight();
@@ -69,7 +71,6 @@ namespace LetsWalkInTheWoods.Class
             char[] col = row.ToCharArray();
             if (col[x] == '#')
             {
-                Console.WriteLine("Il y a un arbre sur votre route !");
                 return true;
             }
             return false;
@@ -85,7 +86,6 @@ namespace LetsWalkInTheWoods.Class
         {
             if (x < 0 || x > Width || y < 0 || y > Width)
             {
-                Console.WriteLine("Vous sortez de la carte !");
                 return true;
             }
             return false;

@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 Map map = new Map();
 Character hero = new(0,0);
+CharacterMovement move;
 Regex regex = new Regex("^[NSEO]*$");
 string[] coordonate;
 bool isntOk = true;
@@ -29,33 +30,42 @@ do
             else
             {
                 hero = new Character(int.Parse(coordonate[0]), int.Parse(coordonate[1]));
-                isntOk = false;
+                move = new CharacterMovement(hero);
+                isntOk = move.InTheWood;
+                if (isntOk)
+                {
+                    Console.WriteLine("Vous ne pouvez pas utiliser ces coordonées, ils se trouve dans la forêt.\n");
+                }
             }
         }
     } while (isntOk);
-    isntOk = true;
-    string direction;
-    do
+    move = new CharacterMovement(hero);
+    if (!move.InTheWood)
     {
-        Console.WriteLine("Entrez les coordonnées de destination\nN: pour nord, S: pour sud, E: pour est et O: pour ouest sans espace :");
-        direction = Console.ReadLine().ToUpper();
-        if (regex.IsMatch(direction))
+        isntOk = true;
+        string direction;
+        do
         {
-            isntOk = false;
-        }
-        else
-        {
-            Console.WriteLine("Vous navez pas utilisez les point cardinaux !");
-        }
-    } while (isntOk);
-
-    CharacterMovement move = new CharacterMovement(hero, direction);
-
-
-    Console.WriteLine($"Le personage se trouve en ({hero.CharacterX},{hero.CharacterY})");
-    Console.WriteLine("Voulez-vous continuer ? O/N :");
-    string response = Console.ReadLine().ToLower();
-    if(response == "n")
+            Console.WriteLine("\nEntrez les coordonnées de destination\nN: pour nord, S: pour sud, E: pour est et O: pour ouest sans espace :");
+            direction = Console.ReadLine().ToUpper();
+            if (regex.IsMatch(direction))
+            {
+                move.CharacterMoving(direction);
+                if (!move.InTheWood)
+                {
+                    isntOk = false;
+                    Console.WriteLine($"Le personage se trouve en ({hero.CharacterX},{hero.CharacterY})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Vous navez pas utilisez les point cardinaux !");
+            }
+        } while (isntOk);
+    }
+    Console.WriteLine("Voulez-vous recommencer ? O/N :");
+    string response = Console.ReadLine().ToUpper();
+    if(response == "N")
     {
         dontStop = false;
     }

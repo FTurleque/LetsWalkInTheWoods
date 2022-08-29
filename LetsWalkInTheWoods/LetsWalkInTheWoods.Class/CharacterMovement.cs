@@ -8,14 +8,16 @@ namespace LetsWalkInTheWoods.Class
     public class CharacterMovement
     {
         private Character hero;
+        public bool InTheWood { get; private set; }
 
-        public CharacterMovement(Character _hero, string _movement)
+        public CharacterMovement(Character _hero, string _movement = " ")
         {
             this.hero = _hero;
-            CharacterMoving(_movement);
+            //CharacterMoving(_movement);
+            InTheWood = GetTreeOrNot() || GetLimitOfMap();
         }
 
-        private void CharacterMoving(string _movement)
+        public void CharacterMoving(string _movement)
         {
             char[] direction = _movement.ToCharArray();
             foreach (char c in direction)
@@ -25,7 +27,9 @@ namespace LetsWalkInTheWoods.Class
                     hero.MoveUp();
                     if (GetTreeOrNot() || GetLimitOfMap())
                     {
+                        InTheWood = true;
                         hero.MoveDown();
+                        return;
                     }
                 }
                 if (c == 'S')
@@ -33,7 +37,9 @@ namespace LetsWalkInTheWoods.Class
                     hero.MoveDown();
                     if (GetTreeOrNot() || GetLimitOfMap())
                     {
+                        InTheWood = true;
                         hero.MoveUp();
+                        return;
                     }
                 }
                 if (c == 'O')
@@ -41,7 +47,9 @@ namespace LetsWalkInTheWoods.Class
                     hero.MoveLeft();
                     if (GetTreeOrNot() || GetLimitOfMap())
                     {
+                        InTheWood = true;
                         hero.MoveRight();
+                        return;
                     }
                 }
                 if (c == 'E')
@@ -49,7 +57,16 @@ namespace LetsWalkInTheWoods.Class
                     hero.MoveRight();
                     if (GetTreeOrNot() || GetLimitOfMap())
                     {
+                        InTheWood = true;
                         hero.MoveLeft();
+                        return;
+                    }
+                }
+                if (c == ' ')
+                {
+                    if (InTheWood)
+                    {
+                        Console.WriteLine("Vous ne pouvez pas vous placer a ces coordonnées.");
                     }
                 }
             }
@@ -57,12 +74,22 @@ namespace LetsWalkInTheWoods.Class
 
         private bool GetLimitOfMap()
         {
-            return Map.OutOfMap(hero.CharacterX, hero.CharacterY);
+            if(Map.OutOfMap(hero.CharacterX, hero.CharacterY))
+            {
+                Console.WriteLine("Vous allez sortir de la carte !");
+                return true;
+            }
+            return false;
         }
 
         private bool GetTreeOrNot()
         {
-            return Map.GetIsTree(hero.CharacterX, hero.CharacterY);
+            if (Map.GetIsTree(hero.CharacterX, hero.CharacterY))
+            {
+                Console.WriteLine("Il y a un arbre à cet emplacement !");
+                return true;
+            }
+            return false;
         }
     }
 }
