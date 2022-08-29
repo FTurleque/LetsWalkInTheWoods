@@ -17,6 +17,7 @@ namespace LetsWalkInTheWoodsGame.Class
         {
             this.X = x;
             this.Y = y;
+            CharacterBody = 'X';
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ Console.WriteLine("Taper sur ESC ou x pour sortir du jeu.\nVeuillez entrer les c
 int x = int.Parse(coordonate.Split(" ")[0]);
 int y = int.Parse(coordonate.Split(" ")[1]);*/
 Character hero = new Character(3, 0);
+CharacterMovement move = new CharacterMovement(hero);
 bool gameRun = true;
 Console.CursorVisible = false;
 ConsoleKeyInfo keyinfo;
@@ -25,23 +26,27 @@ do
     }
     if (keyinfo.Key == ConsoleKey.UpArrow)
     {
-        hero.MoveUp();
-        Console.WriteLine("Up");
+        move.CharacterMoving('N');
+        /*hero.MoveUp();
+        Console.WriteLine("Up");*/
     }
     if (keyinfo.Key == ConsoleKey.DownArrow)
     {
-        hero.MoveDown();
-        Console.WriteLine("Down");
+        move.CharacterMoving('S');
+        /*hero.MoveDown();
+        Console.WriteLine("Down");*/
     }
     if (keyinfo.Key == ConsoleKey.LeftArrow)
     {
-        hero.MoveLeft();
-        Console.WriteLine("Left");
+        move.CharacterMoving('O');
+        /*hero.MoveLeft();
+        Console.WriteLine("Left");*/
     }
     if (keyinfo.Key == ConsoleKey.RightArrow)
     {
-        hero.MoveRight();
-        Console.WriteLine("Right");
+        move.CharacterMoving('E');
+        /*hero.MoveRight();
+        Console.WriteLine("Right");*/
     }
     if (keyinfo.Key == ConsoleKey.X)
     {

@@ -15,6 +15,9 @@ namespace LetsWalkInTheWoodsGame.Class
 
         public static string[] Mapping { get; private set; }
 
+        private static int lastX;
+        private static int lastY;
+
         public Map()
         {
             GetMap = File.ReadAllText(Path.Combine(path, "carte.txt"), Encoding.UTF8);
@@ -55,7 +58,7 @@ namespace LetsWalkInTheWoodsGame.Class
         /// Localisation du personnage sur la carte.
         /// </summary>
         /// <param name="_character">Personnage</param>
-        public static void CharacterLocation(Character _character)
+        public static void CharacterMapping(Character _character)
         {
             string row = Mapping[_character.Y];
             char[] col = row.ToCharArray();
@@ -66,6 +69,8 @@ namespace LetsWalkInTheWoodsGame.Class
                 newRow.Append(c);
             }
             Mapping[_character.Y] = newRow.ToString();
+            lastX = _character.X;
+            lastY = _character.Y;
         }
 
         /// <summary>

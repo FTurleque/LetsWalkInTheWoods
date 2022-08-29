@@ -9,49 +9,67 @@ namespace LetsWalkInTheWoodsGame.Class
     {
         private Character hero;
 
-        public CharacterMovement(Character _hero, string _movement)
+        public CharacterMovement(Character _hero)
         {
             this.hero = _hero;
-            CharacterMoving(_movement);
+            CharacterMoving();
         }
 
-        private void CharacterMoving(string _movement)
+        public void CharacterMoving(char _movement = ' ')
         {
-            char[] direction = _movement.ToCharArray();
+            int x = hero.X;
+            int y = hero.Y;
+            switch (_movement)
+            {
+                case 'N':
+                    if (GetTreeOrNot(x, y - 1) && GetLimitOfMap(x, y - 1))
+                    {
+                        hero.MoveUp();
+                        Map.CharacterMapping(hero);
+                    }
+                    break;
+                case 'S':
+                    if (GetTreeOrNot(x, y + 1) && GetLimitOfMap(x, y + 1))
+                    {
+                        hero.MoveDown();
+                        Map.CharacterMapping(hero);
+                    }
+                    break;
+                case 'O':
+                    if (!GetTreeOrNot(x - 1, y) && !GetLimitOfMap(x - 1, y))
+                    {
+                        hero.MoveLeft();
+                        Map.CharacterMapping(hero);
+                    }
+                    break;
+                case 'E':
+                    if (!GetTreeOrNot(x + 1, y) && !GetLimitOfMap(x + 1, y))
+                    {
+                        hero.MoveRight();
+                        Map.CharacterMapping(hero);
+                    }
+                    break;
+                default:
+                    Map.CharacterMapping(hero);
+                    break;
+            }
+            /*char[] direction = _movement.ToCharArray();
             foreach (char c in direction)
             {
-                int x = hero.X;
-                int y = hero.Y;
 
                 if (c == 'N')
                 {
-                    if (GetTreeOrNot(x - 1, y) && GetLimitOfMap(x - 1, y))
-                    {
-                        hero.MoveUp();
-                    }
                 }
                 if (c == 'S')
                 {
-                    if (GetTreeOrNot(x + 1, y) && GetLimitOfMap(x + 1, y))
-                    {
-                        hero.MoveDown();
-                    }
                 }
                 if (c == 'O')
                 {
-                    if (!GetTreeOrNot(x, y - 1) && !GetLimitOfMap(x, y - 1))
-                    {
-                        hero.MoveLeft();
-                    }
                 }
                 if (c == 'E')
                 {
-                    if (!GetTreeOrNot(x, y + 1) && !GetLimitOfMap(x, y + 1))
-                    {
-                        hero.MoveRight();
-                    }
                 }
-            }
+            }*/
         }
 
         private bool GetLimitOfMap(int x, int y)
