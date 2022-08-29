@@ -13,10 +13,13 @@ namespace LetsWalkInTheWoods.Class
         public CharacterMovement(Character _hero, string _movement = " ")
         {
             this.hero = _hero;
-            //CharacterMoving(_movement);
             InTheWood = GetTreeOrNot() || GetLimitOfMap();
         }
 
+        /// <summary>
+        /// Effectue le mouvement du personnage selon les point cardinaux
+        /// </summary>
+        /// <param name="_movement">Chaine de charactère comprenant tous les mouvement à éffectuer</param>
         public void CharacterMoving(string _movement)
         {
             char[] direction = _movement.ToCharArray();
@@ -72,6 +75,10 @@ namespace LetsWalkInTheWoods.Class
             }
         }
 
+        /// <summary>
+        /// Permet de savoir si les coordonnées du mouvement ne sont pas hors de la carte.
+        /// </summary>
+        /// <returns>Si les coordonnées sont sur la carte ou non</returns>
         private bool GetLimitOfMap()
         {
             if(Map.OutOfMap(hero.CharacterX, hero.CharacterY))
@@ -82,6 +89,10 @@ namespace LetsWalkInTheWoods.Class
             return false;
         }
 
+        /// <summary>
+        /// Permet de savoir si il y a un arbre aux coordonnées du mouvement.
+        /// </summary>
+        /// <returns>Si il y a un arbre ou non</returns>
         private bool GetTreeOrNot()
         {
             if (Map.GetIsTree(hero.CharacterX, hero.CharacterY))
